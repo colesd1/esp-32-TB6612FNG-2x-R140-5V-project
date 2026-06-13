@@ -1,3 +1,1 @@
-This project consists a TB6612FNG with an esp32 to control two R140 5V with a joystick, in the near future i will
-add two 2.4ghz Nrf24l01 + Pa + Lna to make it wireless and solder it into a perfboard, this is my first bigger than 
-normal project.
+This project consists of a TB6612FNG with an ESP32 to control two R140 5V motors with a joystick. In the near future I will add two 2.4GHz NRF24L01 + PA + LNA modules to make it wireless and solder everything onto a perfboard. This is my first project bigger than usual.
