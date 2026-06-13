@@ -1,5 +1,5 @@
-This code is used to control two R140 5V with a TB6612FNG with an esp32, this is one of my first ever esp 32 project
-Este código é usado para controlar dois R140 5V com um TB6612FNG com um esp32, isto é um dos meus primeiros projetos pouco maior que o normal
+This code is used to control two R140 5V motors with a TB6612FNG and an esp32
+Este código é usado para controlar dois motores R140 5V com um TB6612FNG e um esp32
 
 C++
 
