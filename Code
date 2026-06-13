@@ -1,0 +1,77 @@
+This code is used to control two R140 5V with a TB6612FNG with an esp32, this is one of my first ever esp 32 project
+Este código é usado para controlar dois R140 5V com um TB6612FNG com um esp32, isto é um dos meus primeiros projetos pouco maior que o normal
+
+C++
+
+#define AIN1 27
+#define AIN2 14
+#define PWMA 25
+#define vry 35
+#define BIN1 12
+#define BIN2 13
+#define PWMB 26
+#define vrx 34
+
+void moverMotorA(int velocidade) {
+    if (velocidade <= 70 && velocidade >= -70){
+      ledcWrite(PWMA, 0);
+      digitalWrite(AIN1, LOW);
+      digitalWrite(AIN2, LOW);
+  } else if (velocidade > 0) {
+      digitalWrite(AIN1, HIGH);
+      digitalWrite(AIN2, LOW);
+      ledcWrite(PWMA, velocidade);
+  } else if (velocidade < 0) {
+      digitalWrite(AIN1, LOW);
+      digitalWrite(AIN2, HIGH);
+      ledcWrite(PWMA, abs(velocidade));
+  } else {
+      digitalWrite(AIN1, LOW);
+      digitalWrite(AIN2, LOW);
+      ledcWrite(PWMA, 0);
+  }
+}
+
+void moverMotorB(int velocidade) {
+    if (velocidade <= 70 && velocidade >= -70){
+      ledcWrite(PWMB, 0);
+      digitalWrite(BIN1, LOW);
+      digitalWrite(BIN2, LOW);
+    } else if (velocidade > 0) {
+       digitalWrite(BIN1, LOW);
+       digitalWrite(BIN2, HIGH);
+       ledcWrite(PWMB, velocidade); 
+    } else if (velocidade < 0) {
+      digitalWrite(BIN1, HIGH);
+      digitalWrite(BIN2, LOW);
+      ledcWrite(PWMB, abs(velocidade));
+    } else {
+      digitalWrite(BIN1, LOW);
+      digitalWrite(BIN2, LOW);
+      ledcWrite(PWMB, 0);
+    }
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(AIN1, OUTPUT);
+  pinMode(AIN2, OUTPUT);
+  pinMode(BIN1, OUTPUT);
+  pinMode(BIN2, OUTPUT);
+  ledcAttach(PWMA, 1000, 8);
+  ledcAttach(PWMB, 1000, 8);
+}
+
+void loop() {
+  int y = analogRead(vry);
+  int x = analogRead(vrx);
+  int velocidade = map(y, 0, 4093, -255, 255);
+  int direção = map(x, 0, 4093, -255, 255);
+  int motorA = constrain(velocidade + direção, -255, 255);
+  int motorB = constrain(velocidade - direção, -255, 255);
+  moverMotorA(motorA);
+  moverMotorB(motorB);
+  Serial.print(motorA);
+  Serial.print(" ");
+  Serial.println(motorB);
+}
