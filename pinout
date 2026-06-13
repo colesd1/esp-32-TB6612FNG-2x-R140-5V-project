@@ -1,0 +1,29 @@
+pinout
+
+ESP 32
+GPIO 27 AIN1
+GPIO 14 AIN2
+GPIO 25 PWMA
+GPIO 12 BIN1
+GPIO 13 BIN2
+GPIO 26 PWMB
+GPIO 34 Joystick X axis
+GPIO 35 Joystick Y axis
+GPIO 3.3V driver VCC + STBY + VCC joystick
+GND Rail GND
+
+TB6612FNG
+VCC 3.3V esp32
+VM 5V Arduino (used an external arduino cuz esp32 doesnt support supplying two R140)
+GND Rail GND
+AIN1/AIN2 GPIO 27/14
+PWMA GPIO 25
+BIN1/BIN2 GPIO 12/13
+PWMB GPIO 26
+STBY 3.3V rail
+AO1/AO2 Motor A +/-
+BO1/BO2 Motor B +/-
+
+Arduino Uno 
+5V VM TB6612FNG
+GND Rail GND
